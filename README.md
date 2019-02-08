@@ -1,4 +1,4 @@
-#Una guía estupendástica para compilar y exportar apps con Xcode
+# Una guía estupendástica para compilar y exportar apps con Xcode
 
 **Index**:
 1. [Necesidades previas](#necesidades-previas)
@@ -7,9 +7,7 @@
 4. [Generación de iconos](#generación-de-iconos)
 5. [Exportando y firmando nuestra app](#exportando-y-firmando-nuestra-app)
 6. [Métodos de Distribución](#métodos-de-distribución)
-7. [Últimos pasos- iTunes Connect y homologación](#itunes-connect-y-homologacion)
-8. [Releases- publish IPA (iOs application)](#publish-ipa)
-9. [Uploading newer releases to Google Play](#uploading-newer-releases-to-google-play)
+7. [iTunes Connect y homologación](#itunes-connect-y-homologacion)
 
 (*Antes de comenzar, tengamos en cuenta que la app en la que nos hemos basado para ilustrar este proceso se basa en Cordova/Ionic, y que por tanto alguno de estos pasos puede diferir para apps construidas sobre otros entornos*).
 
@@ -56,8 +54,9 @@ Con todo esto, hemos terminado de prepararnos para el proceso. Lo sé, es una li
 
 Con todo esto listo, podemos exportar nuestra primera **ipa**- iPhone Application, el formato de archivo que reconocen los dispositivos Apple a la hora de instalar alguna aplicación. Tras terminar el proceso de building de nuestra aplicación para un entorno iOs (habiendo lanzado, por ejemplo, el comando `npm build ipa` en un framework repositado en NPM), en los directorios de nuestro proyecto probablemente tendremos una carpeta llamada ‘platforms’ donde veremos un subdirectorio ‘ios’. Dentro de esta carpeta se habrán generado, entre otros archivos, un archivo **xcodeworkspace** y un archivo **xcodeproj**. Hacer click en cualquiera de ellos nos abrirá XCode apuntando a nuestro proyecto.
 
+![XCode Workspace](/images/xcodeworkspace.jpg)
+
 Bajo estas líneas tenemos un ejemplo de lo que veremos al abrirse la interfaz. Hay una serie de valores y parámetros a los que prestar atención:
-[XCode Interface](/images/xcodeinterface.jpg)
 
 - **Tipo de dispositivo para el que exportamos**. Aquí podemos elegir si vamos a exportar para un modelo concreto, para una generación de dispositivos determinada, o si queremos exportar para todo el entorno Apple. Nuestro ejemplo deja seleccionada la opción ‘Generic iOs Device’ para conseguir esto (aunque si nuestro archivo ‘config.xml’ ha especificado un valor mínimo de iOs, será ésta la opción que prevalezca).
 
@@ -75,6 +74,7 @@ Otros detalles relevantes de la interfaz de XCode son:
 
 Con todo preparado y configurado como lo necesitamos, hacemos esta selección:
 
+![XCode Archiving](/images/xcodearchive.jpg)
 
 Esta selección preparará los archivos y los comprimirá finalmente en un archivo .ipa, el formato de archivo que usan las aplicaciones en un entorno iOs. Si el proceso termina correctamente y no se dan errores, veremos la siguiente pantalla, en la que debemos seleccionar **Distribute App**. Desde aquí deberemos seleccionar el tipo de distribución adecuada, y podremos limitar nuevamente la app a una serie de dispositivos. Al acabar el proceso también podremos seleccionar el directorio donde se exportará la ipa, y renombrarla. 
 
@@ -82,7 +82,9 @@ Esta selección preparará los archivos y los comprimirá finalmente en un archi
 ## Métodos de Distribución
 Hay cuatro métodos de distribución, y lo que podamos escoger dependerá de los permisos asociados a la cuenta que hayamos escogido (Developer / Enterprise, como vimos previamente):
 
-- **iOS App Store**: servirá para subir nuestra app a la App Store, para su evaluación y posterior aprobación (¡con suerte!). Hay que tener en cuenta que no podremos utilizar esta opción si nuestra cuenta no dispone de un permiso de distribución, y si no hemos registrado nuestra aplicación previamente – por ejemplo, a través de iTunes Connect utilizando nuestro Bundle Id.
+![XCode Distribution Methods](/images/distributionmethods.jpg)
+
+- **iOS App Store**: servirá para subir nuestra app a la App Store, para su evaluación y posterior aprobación (¡con suerte!). Hay que tener en cuenta que no podremos utilizar esta opción si nuestra cuenta no dispone de un permiso de distribución, y si no hemos registrado nuestra aplicación previamente en **iTunes Connect** (veremos esto más adelante).
 
 - **Ad Hoc**: Tal como comentamos al hablar de los Perfiles de Provisionamiento, usaremos esta opción para distribuir nuestra app a un equipo cerrado de usuarios de testing.
 
@@ -93,12 +95,13 @@ Hay cuatro métodos de distribución, y lo que podamos escoger dependerá de los
 
 Ahora podremos volver a decidir si queremos aplicar alguna restricción de dispositivos a nuestra app. Si previamente seleccionamos ‘Generic iOS Device’, escoger aquí **None**.
 
+![XCode Distribution Methods](/images/appthinning.jpg)
 
 Dependiendo del tipo de distribución que hayamos seleccionado puede que necesitemos volver a confirmar opciones de permisos.
 
 Y si este último paso nos sale bien…. ¡Ya tenemos nuestra ipa exportada!
 
-Ahora podemos instalarla en iPhones para testearla, enviarla a cliente o a un equipo de testeo externo. Pero si creíais que la odisea de exportar con un entorno iOs acababa aquí… Ay, ilusos. Nos queda el plato fuerte. El acto final. La *piece de résistance*…
+Ahora podemos instalarla en iPhones para testearla, enviarla a cliente o a un equipo de testeo externo. Pero si creíais que la odisea de exportar con un entorno iOs acababa aquí… *Ay, ilusos*. Nos queda el plato fuerte. El acto final. La *piece de résistance*…
 
 Nos queda revisar el proceso para poder distribuir la aplicación a través de la App Store. Por suerte, si ya hemos dado todos los pasos que indiqué en el apartado de ‘necesidades previas’, esta parte se nos hará mucho más sencilla.
 
