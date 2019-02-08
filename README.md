@@ -57,10 +57,9 @@ Con todo esto, hemos terminado de prepararnos para el proceso. Lo sé, es una li
 Con todo esto listo, podemos exportar nuestra primera **ipa**- iPhone Application, el formato de archivo que reconocen los dispositivos Apple a la hora de instalar alguna aplicación. Tras terminar el proceso de building de nuestra aplicación para un entorno iOs (habiendo lanzado, por ejemplo, el comando `npm build ipa` en un framework repositado en NPM), en los directorios de nuestro proyecto probablemente tendremos una carpeta llamada ‘platforms’ donde veremos un subdirectorio ‘ios’. Dentro de esta carpeta se habrán generado, entre otros archivos, un archivo **xcodeworkspace** y un archivo **xcodeproj**. Hacer click en cualquiera de ellos nos abrirá XCode apuntando a nuestro proyecto.
 
 Bajo estas líneas tenemos un ejemplo de lo que veremos al abrirse la interfaz. Hay una serie de valores y parámetros a los que prestar atención:
+[XCode Interface](/images/xcodeinterface.jpg)
 
-![XCode Interface](/images/xcodeinterface.jpg)
-
-- **Tipo de dispositivo para el que exportamos**. Aquí podemos elegir si vamos a exportar para un modelo concreto, para una generación de dispositivos determinada, o si queremos exportar para todo el entorno Apple. Nuestro ejemplo deja seleccionada la opción ‘Generic iOs Device’ para conseguir esto (aunque si nuestro archivo ‘config.xml’ ha especificado un valor mínimo de iOs, será ésta la opciçon que prevalezca).
+- **Tipo de dispositivo para el que exportamos**. Aquí podemos elegir si vamos a exportar para un modelo concreto, para una generación de dispositivos determinada, o si queremos exportar para todo el entorno Apple. Nuestro ejemplo deja seleccionada la opción ‘Generic iOs Device’ para conseguir esto (aunque si nuestro archivo ‘config.xml’ ha especificado un valor mínimo de iOs, será ésta la opción que prevalezca).
 
 - **Bundle Identifier** (como hemos visto en la sección *necesidades previas*).
 
