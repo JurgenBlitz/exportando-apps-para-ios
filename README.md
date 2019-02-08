@@ -1,4 +1,4 @@
-# Una guía estupendástica para compilar y exportar apps con Xcode
+# Cómo compilar y exportar apps para la Apple App Store
 
 ## Index:
 1. [Necesidades previas](#necesidades-previas)
@@ -12,7 +12,7 @@
 
 (*Antes de comenzar, tengamos en cuenta que la app en la que nos hemos basado para ilustrar este proceso se basa en Cordova/Ionic, y que por tanto alguno de estos pasos puede diferir para apps construidas sobre otros entornos*).
 
-(*Y también que esto sólo servirá para exportar en XCode. Y por tanto, en Mac. Por lo que algún paso os supondrá ‘pasar por caja’. Y dad gracias a que aún no nos piden sentarnos también en una silla Apple iSit de 2500 euros*).
+(*Y también que esto sólo servirá para exportar en XCode. Y por tanto, en un Mac que tenga ese programa instalado. Y, siendo Apple, que algún paso os supondrá ‘pasar por caja’. Y dad gracias a que aún no nos piden sentarnos también en una silla Apple iSit de 2500 euros*).
 
 
 ## Necesidades previas
@@ -30,18 +30,19 @@ Ya que estamos en este punto, y sabiendo que posiblemente utilicéis la cuenta d
 - **Admin**: el primer level-up jugoso. Este nivel permite crear permisos de provisionamiento nuevos, incluir en ellos **UDID** adicionales (veremos esto en seguida), solicitar Certificados de Distribución… Casi todo lo que necesitemos como desarrollador.
 - **Agent**: el dueño de la cuenta. No he podido operar con este nivel de cuenta así que no puedo dar mucha información, pero éste es el nivel de permisos que permite incluir a desarrolladores nuevos en el equipo y modificar sus niveles de permiso. Por tanto, si os diesen de alta en un equipo y fuerais a necesitar modificar perfiles de provisionamiento, solicitar nuevos certificados etc, tendréis que poneros en contacto con el Agent de la cuenta para que extienda vuestro nivel de permisos.
 
+<br>
  ### Nota adicional e IMPORTANTÍSIMA DE LA MUERTE
 Cuando llegue el momento de distribuir vuestra aplicación necesitaréis estar dados de alta en dos sites de Apple: **App Store Connect**, e **iTunes Connect**. Se prevé que a partir de Marzo de 2019 la conectividad entre estos dos portales esté sincronizada, pero de momento necesitaréis solicitar a vuestro **Agent** que os dé de alta en ambos sitios (cuando la sincronización entre ambos suceda, con daros de alta en App Store Connect también tendréis acceso a iTunes Connect). 
 
 [Volver al Index](#index)
-
+<br>
 
 ## Certificados
 
 Teniendo la cuenta creada, y desde el portal de Desarrolladores de Apple, podremos solicitar los certificados de distribucion necesarios para nuestra App. Con el de **Development** podremos exportar nuestras apps para testeo interno, y con el de **Distribution** podremos enviarla a la App Store. Bajo este párrafo podemos ver un ejemplo de cuenta con los dos permisos de distribución creados y aprobados- con el botón '+' encuadrado en rojo podemos solicitar uno nuevo.
 
 ![Certificates](/images/certificates.png)
-
+<br>
 Quedan dos puntos previos que debíamos comentar:
 
 ## Identificadores de app
@@ -51,9 +52,13 @@ Quedan dos puntos previos que debíamos comentar:
 - **Perfiles de Provisionamiento**: archivos generados desde Apple Connect o desde XCode que incluyen varios puntos de información importantes para Apple, como el tipo de permisos de distribución de los que se disponen (Basic, Developer o Enterprise), la cuenta asignada a ese permiso, los Certificados disponibles y los diferentes UDID que se han autenticado. Estos permisos se pueden modificar *mientras* tengamos un nivel de permiso de desarrollador **Admin o superior**.
 
 [Volver al Index](#index)
+<br>
 
+No está mal como serie de pasos previos antes de que estemos preparados para distribuir la primera copia de nuestra app, ¿verdad? Pues queda aún un punto que, aunque no es exclusivo de iOs, debemos tener en cuenta: el **Bundle ID de nuestra app**. El bundle identifier es un código en formato string que podemos localizar en nuestro archivo `config.xml` como una etiqueta `id` o `widget id`, dependiendo del framework que utilicemos para desarrollar nuestra app, y sirve para identificar a nuestra app en plataformas de distribución oficiales (Google Play / iOs App Store y demás) y otras. 
 
-No está mal como serie de pasos previos antes de que estemos preparados para distribuir la primera copia de nuestra app, ¿verdad? Pues queda aún un punto que, aunque no es exclusivo de iOs, debemos tener en cuenta: el **Bundle ID de nuestra app**. El bundle identifier es un código en formato string que podemos localizar en nuestro archivo `config.xml` como una etiqueta `id` o `widget id`, dependiendo del framework que utilicemos para desarrollar nuestra app, y sirve para identificar a nuestra app en plataformas de distribución oficiales (Google Play / iOs App Store y demás) y otras. Personalmente recomiendo usar **el mismo bundle id** si vamos a distribuir en ambas plataformas principales, porque tener que cambiar el ID manualmente cada vez que vayamos a cambiar de plataforma puede ser un engorro. El formato habitual de un bundle id suele ser similar a una URL, por ejemplo: `myapp.mycompany.com`, pero no hay cánones o estándares estrictos sobre qué condiciones necesitan estos bundle id’s. 
+Personalmente recomiendo usar **el mismo bundle id** si vamos a distribuir en ambas plataformas principales,porque tener que cambiar el ID manualmente cada vez que vayamos a cambiar de plataforma puede ser un engorro. El formato habitual de un bundle id suele ser similar a una URL, por ejemplo: `myapp.mycompany.com`, pero no hay cánones o estándares estrictos sobre qué condiciones necesitan estos bundle id’s. 
+
+<br>
 
 ## Generación de iconos
 
@@ -74,13 +79,13 @@ Bajo estas líneas tenemos un ejemplo de lo que veremos al abrirse la interfaz. 
 
 - **Bundle Identifier** (como hemos visto en la sección *necesidades previas*).
 
-- **Cuenta de desarrollador escogida**. Debemos estar seguros de qué tipo de permisos de distribución tiene la cuenta que hemos escogido.
+- **Cuenta de desarrollador escogida**. Debemos estar seguros de qué tipo de certificados de distribución tiene la cuenta que hemos escogido, y ser conscientes de escoger una u otra si vamos simplemente a testear y desarrollar, o vamos a tratar de publicar nuestra app en los markets.
 
 - **Perfil de Provisionamiento** (como hemos visto en la sección *Identificadores de app*). Haciendo click en el icono de info que vemos, podemos previsualizar los permisos de este perfil. Si hacemos click en el icono teniendo un iPhone conectado al Mac, podemos comprobar también cuántos dispositivos están autenticados en este perfil.
 
 Otros detalles relevantes de la interfaz de XCode son:
 
-- Algunos frameworks/arquitecturas (nos ocurrió con **Cordova**) pueden tardar en actualizarse para no tener conflictos cuando sale una versión nueva de XCode, y su modo por defecto de compilado puede fallar. Por suerte, XCode permite usar el sistema **Legacy** (el sistema de versiones anteriores). Podemos localizar esta opción desde `File > Preferences > Build System`.
+- Algunos frameworks/arquitecturas (nos ocurrió con **Cordova**) pueden tardar semanas o meses en actualizarse para no tener conflictos cuando sale una versión nueva de XCode, y su modo por defecto de compilado puede fallar. Por suerte, XCode permite usar el sistema **Legacy** (el sistema de versiones anteriores). Podemos localizar esta opción desde `File > Preferences > Build System`.
 
 - En la captura de pantalla anterior, bajo las opciones de **Signing** podemos ver otra opción llamada **Deployment Info**, que permite preconfigurar el tipo de dispositivos para los cuales vamos a exportar (tablets, iPhones, sólo una de estas opciones…). Si nuestra app está pensada para ser utilizada sólo desde iPhone, desplegaremos la pestaña *Devices* y dejaremos seleccionada sólo **iPhone**. No es necesario seleccionar ninguna opción en el nuevo desplegable que veremos después (Mainframe). La razón de esta selección es que, si dejamos nuestra selección de deployment a Universal, al cargar nuestra app para su revisión en la App Store la interfaz nos pedirá incluir capturas de pantalla en formato Tablet de forma obligatoria. 
 
@@ -113,6 +118,8 @@ Ahora podremos volver a decidir si queremos aplicar alguna restricción de dispo
 
 Dependiendo del tipo de distribución que hayamos seleccionado puede que necesitemos volver a confirmar opciones de permisos.
 
+![XCode Signing](/images/signing.jpg)
+
 Y si este último paso nos sale bien…. ¡Ya tenemos nuestra ipa exportada!
 
 Ahora podemos instalarla en iPhones para testearla, enviarla a cliente o a un equipo de testeo externo. Pero si creíais que la odisea de exportar con un entorno iOs acababa aquí… *Ay, ilusos*. Nos queda el plato fuerte. El acto final. La *piece de résistance*…
@@ -127,11 +134,11 @@ Nos queda revisar el proceso para poder distribuir la aplicación a través de l
 
 En apartados previos vimos que, con una cuenta de tipo **Enterprise**, un mismo dueño de cuenta (Agent) puede asignar diferentes niveles de permisos a los desarrolladores que formen parte del equipo. Para poder enviar la aplicación a la App Store para su revisión y homologación, un usuario del equipo con rango de Agent o Admin debe registrar la aplicación en **iTunes Connect** (*[itunesconnect.apple.com](https://itunesconnect.apple.com)*), utilizando como primer paso el **bundle id** de la app.
 
-Para poder llevar a cabo este paso debemos haber solicitado un **Permiso de Distribución** a través de la **plataforma de desarrolladores de Apple** (*[developer.apple.com](https://developer.apple.com)*), y generar un perfil de provisionamiento para dicho permiso. Opcionalmente, también podemos incluir una serie de UDID’s en este permiso. Nuestro permiso de distribución deberá llevar un bundle ID asignado, único y que no hayamos utilizado antes. Este mismo bundle ID debe ser el que utilicemos para registrar nuestra app en iTunes Connect- si ponemos el bundle id de otro perfil de provisionamiento, el proceso seguramente fallará.
+Después, tendremos que solicitar (si no lo teníamos ya) un **Certificado de Distribución** a través de la **plataforma de desarrolladores de Apple** (*[developer.apple.com](https://developer.apple.com)*), y generar un perfil de provisionamiento para dicho permiso. Opcionalmente, también podemos incluir una serie de UDID’s en este permiso. Nuestro permiso de distribución deberá llevar un bundle ID asignado, único y que no hayamos utilizado antes para distribuir en Development. Este mismo bundle ID debe ser **el que utilicemos para registrar nuestra app en iTunes Connect**- si ponemos el bundle id de otro perfil de provisionamiento, el proceso seguramente fallará.
 
 Desde iTunes Connect, antes de enviar nuestra ipa, tendremos que rellenar una serie de datos referentes a nuestra aplicación como su nombre, subtítulo (de necesitarlo) y URL pública, entre otros datos. 
 
-Con este primer registro completado, podemos tratar de enviar una compilación de la ipa a través del propio XCode. Tras haber compilado la ipa, en las opciones de Distribución seleccionaremos **iOs App Store**, y en el caso de que hayamos usado más de un perfil de provisionamiento durante el desarrollo (por ejemplo, usando uno de Development para enviar ipas en modo Enterprise/Ad Hoc), tenemos que asegurarnos en este paso de seleccionar aquí nuestro **perfil de provisionamiento de Distribución**. 
+Con este primer registro completado, podemos tratar de enviar una compilación de la ipa a través del propio XCode. Tras haber compilado la ipa, en las opciones de Distribución seleccionaremos **iOs App Store**, y en el caso de que hayamos usado más de un perfil de provisionamiento durante el desarrollo (por ejemplo, usando uno de Development para enviar ipas en modo Enterprise/Ad Hoc), tenemos que asegurarnos en este paso de seleccionar aquí nuestro **Certificado de Distribución**. 
 
 En este punto, XCode tratará de subir directamente nuestra aplicación a la App Store (también podemos elegir exportar el archivo para testearlo antes o tratar de subirlo con App Uploader. Si el proceso finaliza con éxito (y no aborta por algún problema con los permisos o el formato de las imágenes), podremos ver nuestro archivo cargado en iTunes Connect, desde donde podremos seguir incluyendo la información y material necesario (capturas de pantalla, información de copyright, información de contacto, etc).
 
