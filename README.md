@@ -3,11 +3,12 @@
 **Index**:
 1. [Necesidades previas](#necesidades-previas)
 2. [Niveles de permisos para cuenta](#niveles-de-permisos-para-cuenta)
-3. [Identificadores de app](#dentificadores-de-app)
-4. [Generación de iconos](#generación-de-iconos)
-5. [Exportando y firmando nuestra app](#exportando-y-firmando-nuestra-app)
-6. [Métodos de Distribución](#métodos-de-distribución)
-7. [iTunes Connect y homologación](#itunes-connect-y-homologacion)
+3. [Certificados](#certificados)
+4. [Identificadores de app](#dentificadores-de-app)
+5. [Generación de iconos](#generación-de-iconos)
+6. [Exportando y firmando nuestra app](#exportando-y-firmando-nuestra-app)
+7. [Métodos de Distribución](#métodos-de-distribución)
+8. [iTunes Connect y homologación](#itunes-connect-y-homologacion)
 
 (*Antes de comenzar, tengamos en cuenta que la app en la que nos hemos basado para ilustrar este proceso se basa en Cordova/Ionic, y que por tanto alguno de estos pasos puede diferir para apps construidas sobre otros entornos*).
 
@@ -31,6 +32,12 @@ Ya que estamos en este punto, y sabiendo que posiblemente utilicéis la cuenta d
 
  ### Nota adicional e IMPORTANTÍSIMA DE LA MUERTE
 Cuando llegue el momento de distribuir vuestra aplicación necesitaréis estar dados de alta en dos sites de Apple: **App Store Connect**, e **iTunes Connect**. Se prevé que a partir de Marzo de 2019 la conectividad entre estos dos portales esté sincronizada, pero de momento necesitaréis solicitar a vuestro **Agent** que os dé de alta en ambos sitios (cuando la sincronización entre ambos suceda, con daros de alta en App Store Connect también tendréis acceso a iTunes Connect). 
+
+## Certificados
+
+Teniendo la cuenta creada, y desde el portal de Desarrolladores de Apple, podremos solicitar los certificados de distribucion necesarios para nuestra App. Con el de **Development** podremos exportar nuestras apps para testeo interno, y con el de **Distribution** podremos enviarla a la App Store. Bajo este párrafo podemos ver un ejemplo de cuenta con los dos permisos de distribución creados y aprobados- con el botón '+' encuadrado en rojo podemos solicitar uno nuevo.
+
+![Certificates](/images/certificates.png)
 
 Quedan dos puntos previos que debíamos comentar:
 
@@ -109,7 +116,7 @@ Nos queda revisar el proceso para poder distribuir la aplicación a través de l
 ## Últimos pasos 
 #### iTunes Connect y homologación
 
-En apartados previos vimos que, con una cuenta de tipo **Enterprise**, un mismo dueño de cuenta (Agent) puede asignar diferentes niveles de permisos a los desarrolladores que formen parte del equipo. Para poder enviar la aplicación a la App Store para su revisión y homologación, un usuario del equipo con rango de Agent o Admin debe registrar la aplicación en **iTunes Connect** (*[itunesconnect.apple.com](itunesconnect.apple.com)*), utilizando como primer paso el **bundle id** de la app.
+En apartados previos vimos que, con una cuenta de tipo **Enterprise**, un mismo dueño de cuenta (Agent) puede asignar diferentes niveles de permisos a los desarrolladores que formen parte del equipo. Para poder enviar la aplicación a la App Store para su revisión y homologación, un usuario del equipo con rango de Agent o Admin debe registrar la aplicación en **iTunes Connect** (*[itunesconnect.apple.com](https://itunesconnect.apple.com)*), utilizando como primer paso el **bundle id** de la app.
 
 Para poder llevar a cabo este paso debemos haber solicitado un **Permiso de Distribución** a través de la **plataforma de desarrolladores de Apple** (*[developer.apple.com](developer.apple.com)*), y generar un perfil de provisionamiento para dicho permiso. Opcionalmente, también podemos incluir una serie de UDID’s en este permiso. Nuestro permiso de distribución deberá llevar un bundle ID asignado, único y que no hayamos utilizado antes. Este mismo bundle ID debe ser el que utilicemos para registrar nuestra app en iTunes Connect- si ponemos el bundle id de otro perfil de provisionamiento, el proceso seguramente fallará.
 
@@ -122,5 +129,6 @@ En este punto, XCode tratará de subir directamente nuestra aplicación a la App
 Con todo finalizado (¡por fin!), podemos **enviar la aplicación para su revisión**, proceso que puede durar varios días (aunque personalmente he podido ver resultados en menos de 24 horas). Nuestra app puede ser rechazada en una primera instancia, pero eso no implica que no vaya a poder estar disponible para iOs- nos indicarán puntos de mejora, solicitudes de modificación de información o credenciales adicionales. Cuando hayamos corregido estos problemas podemos subir una versión nueva de nuestra app que contemple estos cambios.
 
 
-Y tras una avalanca de párrafos, esta guía llega a su fin. Relajaos, abrid una cerveza y suerte en el proceso de desarrollo y homologación de vuestra app.
+Y tras una avalancha de párrafos, esta guía llega a su fin. Relajaos, abrid una cerveza y suerte en el proceso de desarrollo y homologación de vuestra app.
 
+![Peter Griffin](/images/griffin.png)
