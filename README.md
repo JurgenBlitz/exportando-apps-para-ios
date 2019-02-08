@@ -50,6 +50,8 @@ Quedan dos puntos previos que debíamos comentar:
 - **UDID**: Unique Device Identidier. Es un código generado automáticamente en cada dispositivo Apple que sirve para autenticarlo. Algunos métodos de exportado de apps, como el **Ad Hoc** (me estoy repitiendo, pero lo veremos más adelante) generarán un archivo que sólo podrán instalarse aquellos dispositivos a los que se les haya incluido en un Perfil de Provisionamiento, utilizando sus UDID para incluirles.
 - **Perfiles de Provisionamiento**: archivos generados desde Apple Connect o desde XCode que incluyen varios puntos de información importantes para Apple, como el tipo de permisos de distribución de los que se disponen (Basic, Developer o Enterprise), la cuenta asignada a ese permiso, los Certificados disponibles y los diferentes UDID que se han autenticado. Estos permisos se pueden modificar *mientras* tengamos un nivel de permiso de desarrollador **Admin o superior**.
 
+[Volver al Index](#index)
+
 
 No está mal como serie de pasos previos antes de que estemos preparados para distribuir la primera copia de nuestra app, ¿verdad? Pues queda aún un punto que, aunque no es exclusivo de iOs, debemos tener en cuenta: el **Bundle ID de nuestra app**. El bundle identifier es un código en formato string que podemos localizar en nuestro archivo `config.xml` como una etiqueta `id` o `widget id`, dependiendo del framework que utilicemos para desarrollar nuestra app, y sirve para identificar a nuestra app en plataformas de distribución oficiales (Google Play / iOs App Store y demás) y otras. Personalmente recomiendo usar **el mismo bundle id** si vamos a distribuir en ambas plataformas principales, porque tener que cambiar el ID manualmente cada vez que vayamos a cambiar de plataforma puede ser un engorro. El formato habitual de un bundle id suele ser similar a una URL, por ejemplo: `myapp.mycompany.com`, pero no hay cánones o estándares estrictos sobre qué condiciones necesitan estos bundle id’s. 
 
@@ -88,6 +90,8 @@ Con todo preparado y configurado como lo necesitamos, hacemos esta selección:
 
 Esta selección preparará los archivos y los comprimirá finalmente en un archivo .ipa, el formato de archivo que usan las aplicaciones en un entorno iOs. Si el proceso termina correctamente y no se dan errores, veremos la siguiente pantalla, en la que debemos seleccionar **Distribute App**. Desde aquí deberemos seleccionar el tipo de distribución adecuada, y podremos limitar nuevamente la app a una serie de dispositivos. Al acabar el proceso también podremos seleccionar el directorio donde se exportará la ipa, y renombrarla. 
 
+[Volver al Index](#index)
+
 
 ## Métodos de Distribución
 Hay cuatro métodos de distribución, y lo que podamos escoger dependerá de los permisos asociados a la cuenta que hayamos escogido (Developer / Enterprise, como vimos previamente):
@@ -114,6 +118,8 @@ Y si este último paso nos sale bien…. ¡Ya tenemos nuestra ipa exportada!
 Ahora podemos instalarla en iPhones para testearla, enviarla a cliente o a un equipo de testeo externo. Pero si creíais que la odisea de exportar con un entorno iOs acababa aquí… *Ay, ilusos*. Nos queda el plato fuerte. El acto final. La *piece de résistance*…
 
 Nos queda revisar el proceso para poder distribuir la aplicación a través de la App Store. Por suerte, si ya hemos dado todos los pasos que indiqué en el apartado de ‘necesidades previas’, esta parte se nos hará mucho más sencilla.
+
+[Volver al Index](#index)
 
 
 ## Últimos pasos 
