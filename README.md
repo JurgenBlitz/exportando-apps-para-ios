@@ -31,7 +31,8 @@ Ya que estamos en este punto, y sabiendo que posiblemente utilicéis la cuenta d
 - **Agent**: el dueño de la cuenta. No he podido operar con este nivel de cuenta así que no puedo dar mucha información, pero éste es el nivel de permisos que permite incluir a desarrolladores nuevos en el equipo y modificar sus niveles de permiso. Por tanto, si os diesen de alta en un equipo y fuerais a necesitar modificar perfiles de provisionamiento, solicitar nuevos certificados etc, tendréis que poneros en contacto con el Agent de la cuenta para que extienda vuestro nivel de permisos.
 
 <br>
- ### Nota adicional e IMPORTANTÍSIMA DE LA MUERTE
+
+### Nota adicional e IMPORTANTÍSIMA DE LA MUERTE
 Cuando llegue el momento de distribuir vuestra aplicación necesitaréis estar dados de alta en dos sites de Apple: **App Store Connect**, e **iTunes Connect**. Se prevé que a partir de Marzo de 2019 la conectividad entre estos dos portales esté sincronizada, pero de momento necesitaréis solicitar a vuestro **Agent** que os dé de alta en ambos sitios (cuando la sincronización entre ambos suceda, con daros de alta en App Store Connect también tendréis acceso a iTunes Connect). 
 
 [Volver al Index](#index)
@@ -71,23 +72,23 @@ Con todo esto, hemos terminado de prepararnos para el proceso. Lo sé, es una li
 
 Con todo esto listo, podemos exportar nuestra primera **ipa**- iPhone Application, el formato de archivo que reconocen los dispositivos Apple a la hora de instalar alguna aplicación. Tras terminar el proceso de building de nuestra aplicación para un entorno iOs (habiendo lanzado, por ejemplo, el comando `npm build ipa` en un framework repositado en NPM), en los directorios de nuestro proyecto probablemente tendremos una carpeta llamada ‘platforms’ donde veremos un subdirectorio ‘ios’. Dentro de esta carpeta se habrán generado, entre otros archivos, un archivo **xcodeworkspace** y un archivo **xcodeproj**. Hacer click en cualquiera de ellos nos abrirá XCode apuntando a nuestro proyecto.
 
-![XCode Workspace](/images/xcodeworkspace.jpg)
+![XCode Workspace](/images/xcodeworkspace.png)
 
 Bajo estas líneas tenemos un ejemplo de lo que veremos al abrirse la interfaz. Hay una serie de valores y parámetros a los que prestar atención:
 
-- **Tipo de dispositivo para el que exportamos**. Aquí podemos elegir si vamos a exportar para un modelo concreto, para una generación de dispositivos determinada, o si queremos exportar para todo el entorno Apple. Nuestro ejemplo deja seleccionada la opción ‘Generic iOs Device’ para conseguir esto (aunque si nuestro archivo ‘config.xml’ ha especificado un valor mínimo de iOs, será ésta la opción que prevalezca).
+![XCode Workspace](/images/xcodeinterface.jpg)
 
-- **Bundle Identifier** (como hemos visto en la sección *necesidades previas*).
+- **1- Tipo de dispositivo para el que exportamos**. Aquí podemos elegir si vamos a exportar para un modelo concreto, para una generación de dispositivos determinada, o si queremos exportar para todo el entorno Apple. Nuestro ejemplo deja seleccionada la opción ‘Generic iOs Device’ para conseguir esto (aunque si nuestro archivo ‘config.xml’ ha especificado un valor mínimo de iOs, será ésta la opción que prevalezca).
 
-- **Cuenta de desarrollador escogida**. Debemos estar seguros de qué tipo de certificados de distribución tiene la cuenta que hemos escogido, y ser conscientes de escoger una u otra si vamos simplemente a testear y desarrollar, o vamos a tratar de publicar nuestra app en los markets.
+- **2- Bundle Identifier** (como hemos visto en la sección *necesidades previas*).
 
-- **Perfil de Provisionamiento** (como hemos visto en la sección *Identificadores de app*). Haciendo click en el icono de info que vemos, podemos previsualizar los permisos de este perfil. Si hacemos click en el icono teniendo un iPhone conectado al Mac, podemos comprobar también cuántos dispositivos están autenticados en este perfil.
+- **3- Perfil de Provisionamiento para la firma**. Debemos estar seguros de qué tipo de certificados de distribución tiene la cuenta que hemos escogido, y ser conscientes de escoger una u otra si vamos simplemente a testear y desarrollar, o vamos a tratar de publicar nuestra app en los markets. Haciendo click en el icono de info que vemos, podemos previsualizar los permisos de este perfil. Si hacemos click en el icono (i) teniendo un iPhone conectado al Mac, podemos comprobar también cuántos dispositivos están autenticados en este perfil.
 
 Otros detalles relevantes de la interfaz de XCode son:
 
-- Algunos frameworks/arquitecturas (nos ocurrió con **Cordova**) pueden tardar semanas o meses en actualizarse para no tener conflictos cuando sale una versión nueva de XCode, y su modo por defecto de compilado puede fallar. Por suerte, XCode permite usar el sistema **Legacy** (el sistema de versiones anteriores). Podemos localizar esta opción desde `File > Preferences > Build System`.
+- Algunos frameworks/arquitecturas (nos ocurrió con **Cordova**) pueden tardar semanas o meses en actualizarse para no tener conflictos cuando sale una versión nueva de XCode, y su modo por defecto de compilado puede fallar. Por suerte, XCode permite usar el sistema **Legacy** (el sistema de versiones anteriores). Podemos localizar esta opción desde `File > Project Settings > Build System`.
 
-- En la captura de pantalla anterior, bajo las opciones de **Signing** podemos ver otra opción llamada **Deployment Info**, que permite preconfigurar el tipo de dispositivos para los cuales vamos a exportar (tablets, iPhones, sólo una de estas opciones…). Si nuestra app está pensada para ser utilizada sólo desde iPhone, desplegaremos la pestaña *Devices* y dejaremos seleccionada sólo **iPhone**. No es necesario seleccionar ninguna opción en el nuevo desplegable que veremos después (Mainframe). La razón de esta selección es que, si dejamos nuestra selección de deployment a Universal, al cargar nuestra app para su revisión en la App Store la interfaz nos pedirá incluir capturas de pantalla en formato Tablet de forma obligatoria. 
+- En la captura de pantalla anterior, bajo las opciones de **Signing** tendremos otra opción llamada **Deployment Info**, que permite preconfigurar el tipo de dispositivos para los cuales vamos a exportar (tablets, iPhones, sólo una de estas opciones…). Si nuestra app está pensada para ser utilizada sólo desde iPhone, desplegaremos la pestaña *Devices* y dejaremos seleccionada sólo **iPhone**. No es necesario seleccionar ninguna opción en el nuevo desplegable que veremos después (Mainframe). La razón de esta selección es que, si dejamos nuestra selección de deployment a Universal, al cargar nuestra app para su revisión en la App Store la interfaz nos pedirá incluir capturas de pantalla en formato Tablet de forma obligatoria. 
 
 Con todo preparado y configurado como lo necesitamos, hacemos esta selección:
 
